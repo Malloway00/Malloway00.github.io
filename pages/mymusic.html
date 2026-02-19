@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Devin's Music</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Music-specific styles that match your existing aesthetic */
+        .music-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        .track-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .track-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 0, 0.2));
+        }
+
+        .track-item:hover {
+            filter: drop-shadow(0 0 10px rgba(219, 166, 22, 0.75)) drop-shadow(0 0 20px rgba(219, 166, 22, 0.5));
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .track-item.playing {
+            border-color: #ffd392;
+            filter: drop-shadow(0 0 15px rgba(255, 211, 146, 0.8)) drop-shadow(0 0 30px rgba(255, 211, 146, 0.4));
+            background: rgba(255, 211, 146, 0.1);
+        }
+
+        .track-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .track-number {
+            color: #ffd392;
+            font-size: 1.2rem;
+            min-width: 30px;
+        }
+
+        .track-title {
+            color: white;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            letter-spacing: 0.05em;
+        }
+
+        .track-meta {
+            color: #c2c2c2;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .play-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .track-item:hover .play-icon {
+            border-color: #ffd392;
+            color: #ffd392;
+            box-shadow: 0 0 10px rgba(255, 211, 146, 0.5);
+        }
+
+        /* Now Playing Bar at bottom */
+        .now-playing {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: black;
+            border-top: 2px solid white;
+            padding: 20px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            box-shadow: 0 -5px 20px rgba(255, 255, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .now-playing.active {
+            display: flex;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .control-btn {
+            background: none;
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Charis SIL', serif;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            border-color: #ffd392;
+            color: #ffd392;
+            box-shadow: 0 0 10px rgba(255, 211, 146, 0.5);
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            max-width: 400px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #ffd392;
+            width: 0%;
+            box-shadow: 0 0 10px rgba(255, 211, 146, 0.8);
+            transition: width 0.1s linear;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .music-container {
+                margin-top: 20px;
+            }
+
+            .track-item {
+                padding: 15px;
+            }
+
+            .now-playing {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .progress-container {
+                width: 100%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <hr>
+    <div class="linkholder">
+        <div class="Links">
+            <a href="../index.html">Main Page</a>
+            <span class="slash">/</span>
+            <a href="../pages/aboutme.html">About Me</a>
+            <span class="slash">/</span>
+            <a href="../pages/myprojects.html">Projects</a>
+            <span class="slash">/</span>
+            <a href="../pages/mymodels.html">3D Models</a>
+        </div>
+    </div>
+    <hr class="Line">
+
+    <div class="Hero">
+        <h1 class="Title">Music</h1>
+    </div>
+
+    <div class="music-container">
+        <div class="track-list" id="trackList">
+            <!-- Tracks will be populated here -->
+        </div>
+    </div>
+
+    <!-- Sticky Player -->
+    <div class="now-playing" id="nowPlaying">
+        <div class="controls">
+            <button class="control-btn" onclick="previousTrack()">« Prev</button>
+            <button class="control-btn" onclick="togglePlay()" id="playPauseBtn">Pause</button>
+            <button class="control-btn" onclick="nextTrack()">Next »</button>
+        </div>
+        <div class="progress-container" onclick="seek(event)">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <span id="currentTime" style="color: white; font-size: 0.9rem;">0:00 / 0:00</span>
+    </div>
+
+    <script>
+        const tracks = [
+            {
+                title: "A Love Lost in Time",
+                artist: "Devin Barrett",
+                src: "../audio/AALIT.wav"
+            },
+            {
+                title: "Ain't That Nice",
+                artist: "Devin Barrett",
+                src: "../audio/AintThatNice.wav"
+            },
+            {
+                title: "EarthBound",
+                artist: "Devin Barrett",
+                src: "../audio/Earthbound.wav"
+            },
+            {
+                title: "Space Warp",
+                artist: "Devin Barrett",
+                src: "../audio/Space Warp.ogg"
+            },
+            {
+                title: "Insert Coin(Not Crime)",
+                artist: "Devin Barrett",
+                src: "../audio/Insert Coin(Not Crime).wav"
+            },
+            {
+                title: "Disco Déjà Vu",
+                artist: "Devin Barrett",
+                src: "../audio/Disco Déjà Vu.m4a"
+            }
+        ];
+
+        let currentTrackIndex = -1;
+        let audio = new Audio();
+        let isPlaying = false;
+
+        // Initialize track list
+        const trackList = document.getElementById('trackList');
+        tracks.forEach((track, index) => {
+            const trackEl = document.createElement('div');
+            trackEl.className = 'track-item';
+            trackEl.innerHTML = `
+                <div class="track-info">
+                    <span class="track-number">${String(index + 1).padStart(2, '0')}</span>
+                    <div>
+                        <div class="track-title">${track.title}</div>
+                        <div class="track-meta">${track.artist}</div>
+                    </div>
+                </div>
+                <div class="play-icon" id="icon-${index}">▶</div>
+            `;
+            trackEl.onclick = () => playTrack(index);
+            trackList.appendChild(trackEl);
+        });
+
+        function playTrack(index) {
+            // Remove playing class from previous
+            document.querySelectorAll('.track-item').forEach(el => el.classList.remove('playing'));
+            document.querySelectorAll('.play-icon').forEach(el => el.textContent = '▶');
+
+            if (currentTrackIndex === index && isPlaying) {
+                // Pause if clicking current track
+                audio.pause();
+                isPlaying = false;
+                document.getElementById('playPauseBtn').textContent = 'Play';
+                document.getElementById('nowPlaying').classList.remove('active');
+                return;
+            }
+
+            currentTrackIndex = index;
+            const track = tracks[index];
+
+            // Update UI
+            const trackItems = document.querySelectorAll('.track-item');
+            trackItems[index].classList.add('playing');
+            document.getElementById(`icon-${index}`).textContent = '⏸';
+            document.getElementById('nowPlaying').classList.add('active');
+            document.getElementById('playPauseBtn').textContent = 'Pause';
+
+            // Play audio
+            audio.src = track.src;
+            audio.play();
+            isPlaying = true;
+        }
+
+        function togglePlay() {
+            if (currentTrackIndex === -1) return;
+
+            if (isPlaying) {
+                audio.pause();
+                document.getElementById('playPauseBtn').textContent = 'Play';
+                document.querySelectorAll('.play-icon').forEach(el => el.textContent = '▶');
+            } else {
+                audio.play();
+                document.getElementById('playPauseBtn').textContent = 'Pause';
+                document.getElementById(`icon-${currentTrackIndex}`).textContent = '⏸';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function nextTrack() {
+            if (currentTrackIndex < tracks.length - 1) {
+                playTrack(currentTrackIndex + 1);
+            } else {
+                playTrack(0); // Loop to start
+            }
+        }
+
+        function previousTrack() {
+            if (currentTrackIndex > 0) {
+                playTrack(currentTrackIndex - 1);
+            } else {
+                playTrack(tracks.length - 1); // Loop to end
+            }
+        }
+
+        function seek(event) {
+            const rect = event.currentTarget.getBoundingClientRect();
+            const percent = (event.clientX - rect.left) / rect.width;
+            audio.currentTime = percent * audio.duration;
+        }
+
+        // Update progress bar
+        audio.addEventListener('timeupdate', () => {
+            const percent = (audio.currentTime / audio.duration) * 100;
+            document.getElementById('progressBar').style.width = percent + '%';
+
+            const current = formatTime(audio.currentTime);
+            const total = formatTime(audio.duration || 0);
+            document.getElementById('currentTime').textContent = `${current} / ${total}`;
+        });
+
+        // Auto-play next track
+        audio.addEventListener('ended', () => {
+            nextTrack();
+        });
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+    </script>
+</body>
+
+</html>
