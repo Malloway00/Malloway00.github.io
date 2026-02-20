@@ -22,8 +22,7 @@ body {
 
 .Projects {
     display: flex;
-    flex-direction: Row;
-    margin-top: 50px;
+    flex-direction: row;
     margin-left: 100px;
     margin-right: 100px;
 }
@@ -31,9 +30,6 @@ body {
 /*/ AEON /*/
 
 .AEON {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     color: white;
     margin-right: 100px;
 }
@@ -41,7 +37,6 @@ body {
 .aeonSeal {
     width: 250px;
     height: 250px;
-    transform: translateY(-25px);
     filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 0, 0.3)) brightness(1.1) contrast(0.9);
     transition: filter 0.3s ease-in-out;
 }
@@ -54,9 +49,6 @@ body {
 /*/ Grid Hud /*/
 
 .gridHud {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     color: white;
     margin-right: 100px;
 }
@@ -65,7 +57,6 @@ body {
     width: 250px;
     height: 250px;
     border: 2px solid white;
-    transform: translateY(-25px);
     filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 0, 0.3)) brightness(1.1) contrast(0.9);
     transition: filter 0.3s ease-in-out;
 }
@@ -78,9 +69,6 @@ body {
 /*/ Garbage & Recycling /*/
 
 .GandR {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     color: white;
 }
 
@@ -88,7 +76,6 @@ body {
     width: 250px;
     height: 250px;
     border: 2px solid white;
-    transform: translateY(-25px);
     filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 0, 0.3)) brightness(1.1) contrast(0.9);
     transition: filter 0.3s ease-in-out;
     margin-right: 100px;
@@ -305,9 +292,65 @@ hr {
     .Projects {
         display: flex;
         flex-direction: column;
+        align-items: center;
         margin-top: 50px;
-        margin-left: 100px;
-        margin-right: 100px;
+    }
+
+    .AEON {
+        color: white;
+        margin-bottom: 50px;
+    }
+
+    .aeonSeal {
+        width: 250px;
+        height: 250px;
+        filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 0, 0.3)) brightness(1.1) contrast(0.9);
+        transition: filter 0.3s ease-in-out;
+    }
+
+    .aeonSeal:hover {
+        filter: drop-shadow(0 0 10px rgba(219, 166, 22, 0.75)) drop-shadow(0 0 20px rgba(219, 166, 22, 0.5)) brightness(1.1) contrast(0.9);
+        cursor: pointer;
+    }
+
+    /*/ Grid Hud /*/
+
+    .gridHud {
+        color: white;
+        margin-bottom: 50px;
+    }
+
+    .hudPic {
+        width: 250px;
+        height: 250px;
+        border: 2px solid white;
+        filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 0, 0.3)) brightness(1.1) contrast(0.9);
+        transition: filter 0.3s ease-in-out;
+    }
+
+    .hudPic:hover {
+        filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.5)) drop-shadow(0 0 20px rgba(255, 255, 0, 0.5)) brightness(1.1) contrast(0.9);
+        cursor: pointer;
+    }
+
+    /*/ Garbage & Recycling /*/
+
+    .GandR {
+        color: white;
+    }
+
+    .GandRPic {
+        width: 250px;
+        height: 250px;
+        border: 2px solid white;
+        filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 0, 0.3)) brightness(1.1) contrast(0.9);
+        transition: filter 0.3s ease-in-out;
+        margin-bottom: 50px;
+    }
+
+    .GandRPic:hover {
+        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5)) drop-shadow(0 0 20px rgba(0, 255, 255, 0.5)) brightness(1.1) contrast(0.9);
+        cursor: pointer;
     }
 
     .smallDash {
