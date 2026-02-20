@@ -293,29 +293,37 @@ hr {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin: 50px 20px 0 20px;
     }
 
-    /* Reset item margins - remove right margins, add bottom spacing */
-    .AEON {
-        color: white;
-        margin-right: 0;
-        margin-bottom: 50px;
-    }
-
+    .AEON,
     .gridHud {
-        color: white;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .aeonSeal,
+    .hudPic {
+        margin-right: 0;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .GandR {
         margin-right: 0;
         margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
     }
 
     .GandRPic {
-        width: 250px;
-        height: 250px;
-        border: 2px solid white;
-        filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 0, 0.3)) brightness(1.1) contrast(0.9);
-        transition: filter 0.3s ease-in-out;
         margin-right: 0;
         margin-bottom: 50px;
+        max-width: 100%;
+        height: auto;
+        box-sizing: border-box;
     }
 
     .smallDash {
