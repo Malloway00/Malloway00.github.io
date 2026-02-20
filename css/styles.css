@@ -270,25 +270,20 @@ hr {
 
 @media (max-width: 768px) {
 
-    /* Remove the negative translate that pulls title up into the nav */
     .Title {
         transform: translateY(-40px);
         margin-bottom: 20px;
     }
 
-    /* Push the hero section down to create separation from navigation */
     .Hero {
         margin-top: 80px;
     }
 
-    /* Ensure nav stays on top if any overlap occurs */
     .linkholder {
         font-size: clamp(12px, 3.5vw, 28px);
         margin-left: 10px;
         position: relative;
-        /* Required for z-index to work */
         z-index: 100;
-        /* Keeps links clickable above other content */
     }
 
     .slash {
@@ -305,6 +300,14 @@ hr {
         margin-bottom: 25px;
         letter-spacing: 0.05em;
         font-size: clamp(1rem, 3vw, 1.5rem);
+    }
+
+    .Projects {
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+        margin-left: 100px;
+        margin-right: 100px;
     }
 
     .smallDash {
