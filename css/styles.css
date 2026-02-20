@@ -297,33 +297,24 @@ hr {
     }
 
     .AEON,
-    .gridHud {
+    .gridHud,
+    .GandR {
+        width: 100%;
         display: flex;
         justify-content: center;
-        width: 100%;
-    }
-
-    .aeonSeal,
-    .hudPic {
         margin-right: 0;
-        max-width: 100%;
-        height: auto;
+        margin-bottom: 50px;
     }
 
     .GandR {
-        margin-right: 0;
-        margin-bottom: 50px;
-        display: flex;
-        justify-content: center;
-        width: 100%;
+        margin-bottom: 0;
     }
 
+    .aeonSeal,
+    .hudPic,
     .GandRPic {
         margin-right: 0;
-        margin-bottom: 50px;
-        max-width: 100%;
-        height: auto;
-        box-sizing: border-box;
+        display: block;
     }
 
     .smallDash {
