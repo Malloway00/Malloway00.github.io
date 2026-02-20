@@ -293,7 +293,6 @@ hr {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 50px 20px 0 20px;
     }
 
     /* Reset item margins - remove right margins, add bottom spacing */
