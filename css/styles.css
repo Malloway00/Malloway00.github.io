@@ -299,8 +299,9 @@ hr {
     .AEON,
     .gridHud,
     .GandR {
-        text-align: center;
         width: 100%;
+        display: flex;
+        justify-content: center;
         margin-right: 0;
         margin-bottom: 50px;
     }
