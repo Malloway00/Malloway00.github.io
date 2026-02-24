@@ -23,6 +23,8 @@ body {
 .Projects {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    text-align: center;
     margin-left: 100px;
     margin-right: 100px;
 }
@@ -177,28 +179,37 @@ body {
     gap: 8px;
 }
 
-a:link {
+.Links a {
     color: #ffffff;
     background-color: transparent;
     text-decoration: none;
 }
 
-a:visited {
+.Links a:visited {
     color: #c2c2c2;
     background-color: transparent;
     text-decoration: none;
 }
 
-a:hover {
+.Links a:hover {
     color: #ffd392;
     background-color: transparent;
     text-decoration: none;
 }
 
-a:active {
+.Links a:active {
     color: #ffffff;
     background-color: transparent;
     text-decoration: none;
+}
+
+.MySpeech a {
+    color: #e5e5ff;
+    text-decoration: underline;
+}
+
+.MySpeech a:hover {
+    color: #ffd392;
 }
 
 /*////////////*/
